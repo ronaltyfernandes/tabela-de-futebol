@@ -11,7 +11,7 @@ class TeamsController {
 
   public async findAll(_req: Request, res: Response) {
     const serviceResponse = await this.teamsService.findAll();
-    res.status(mapStatusHTTP.successful).json({ response: serviceResponse.data });
+    res.status(mapStatusHTTP.successful).json(serviceResponse.data);
   }
 
   public async findById(req: Request, res: Response) {

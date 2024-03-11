@@ -1,15 +1,15 @@
 // // src/models/BookModel.ts
 
-// import Teams from '../database/models/TeamsModel';
-// import { ITeamsModel } from '../Interfaces/teams/ITeamsModel';
-// import ITeams from '../Interfaces/teams/Teams';
+// import User from '../database/models/UsersModel';
+// import { IUserModel } from '../Interfaces/teams/IUserModel';
+// // import ITeams from '../Interfaces/teams/Teams';
 // // import { NewEntity } from '../interfaces';
 
-// export default class TeamsModel implements ITeamsModel {
-//   private model = Teams;
+// export default class TeamsModel implements IUserModel {
+//   private model = User;
 
-//   async login(email:string, password: string): Promise<ITeams | null> {
-//     const dbData = await this.model.findByPk(email, password);
+//   async login(email:string, password: string): Promise<{ token:string } | null> {
+//     const dbData = await this.model.findOne({ where: { email, password } });
 //     if (dbData == null) return null;
 //     return dbData;
 //   }
