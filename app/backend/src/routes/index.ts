@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import teamsRoute from './teams.route';
+import teamsRoute from './Teams.route';
 
 const router = Router();
 

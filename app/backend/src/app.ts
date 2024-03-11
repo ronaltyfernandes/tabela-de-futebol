@@ -1,6 +1,6 @@
 import * as express from 'express';
 import 'express-async-errors';
-import router from './routes/index';
+import router from './routes';
 
 import errorMiddleware from './middlewares/errorMiddleware';
 
@@ -20,6 +20,7 @@ class App {
     this.app.use(errorMiddleware);
 
     // adicionando rotas
+
     this.routes();
   }
 
