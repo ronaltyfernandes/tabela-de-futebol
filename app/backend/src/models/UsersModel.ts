@@ -4,7 +4,7 @@ import userType from '../Interfaces/user/Users';
 // import ITeams from '../Interfaces/teams/Teams';
 // import { NewEntity } from '../interfaces';
 
-export default class TeamsModel implements IUserModel {
+export default class UserModel implements IUserModel {
   private model = User;
 
   async findAll(): Promise<userType[]> {

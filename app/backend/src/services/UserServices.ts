@@ -20,10 +20,10 @@ export default class UserServices {
   public async login(email:string, password:string): Promise<ServiceResponse<{ token:string }>> {
     const dataValue = await this.userModel.login(email);
     if (!dataValue) return { status: 'NOT_FOUND', data: { message: 'invalid password or email' } };
-    console.log(bcrypt.compareSync(dataValue.password, password));
+    // console.log(!bcrypt.compareSync(dataValue.password, password));
 
     if (!bcrypt.compareSync(dataValue.password, password)) {
-      return { status: 'NOT_FOUND', data: { message: 'invalid password' } };
+      return { status: 'UNAUTHORIZED', data: { message: 'invalid password' } };
     }
     const token = generateToken({ email });
     return { status: 'SUCCESSFUL', data: { token } };

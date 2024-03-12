@@ -1,6 +1,6 @@
 import { Request, Router, Response } from 'express';
 import UsersController from '../controllers/UsersController';
-import { newEmailValid, newPasswordValid } from '../middlewares/loginMiddleware';
+import { newEmailValid, newPasswordValid, tokenValid } from '../middlewares/loginMiddleware';
 
 const userController = new UsersController();
 
@@ -12,6 +12,7 @@ router.post(
   newPasswordValid,
   (req: Request, res: Response) => userController.login(req, res),
 );
-
 router.get('/', (req: Request, res: Response) => userController.findAll(req, res));
+router.get('/role', tokenValid, (req: Request, res: Response) => userController.findAll(req, res));
+
 export default router;

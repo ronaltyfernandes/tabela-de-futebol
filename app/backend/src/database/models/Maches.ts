@@ -32,7 +32,6 @@ Matches.init(
         model: 'teams',
         key: 'id',
       },
-      field: 'username,',
     },
     homeTeamGoals: {
       type: DataTypes.NUMBER,
@@ -63,20 +62,20 @@ Matches.init(
   },
 );
 TeamsModel.hasMany(Matches, {
-  foreignKey: 'home_team_id',
-  as: 'homeTeamId',
+  foreignKey: 'homeTeamId',
+  as: 'homeTeam',
 });
 Matches.belongsTo(TeamsModel, {
-  foreignKey: 'home_team_id',
-  as: 'homeTeamId',
+  foreignKey: 'homeTeamId',
+  as: 'homeTeam',
 });
 TeamsModel.hasMany(Matches, {
-  foreignKey: 'away_team_id',
-  as: 'awayTeamId',
+  foreignKey: 'awayTeamId',
+  as: 'awayTeam',
 });
 Matches.belongsTo(TeamsModel, {
-  foreignKey: 'away_team_id',
-  as: 'awayTeamId',
+  foreignKey: 'awayTeamId',
+  as: 'awayTeam',
 });
 
 export default Matches;

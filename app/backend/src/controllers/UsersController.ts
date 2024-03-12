@@ -11,7 +11,7 @@ class UsersController {
 
   public async findAll(_req: Request, res: Response) {
     const serviceResponse = await this.userService.findAll();
-    res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
   }
 
   public async login(req: Request, res: Response) {
@@ -19,11 +19,14 @@ class UsersController {
 
     const serviceResponse = await this.userService.login(email, password);
 
-    if (serviceResponse.status !== 'SUCCESSFUL') {
-      return res.status(mapStatusHTTP.notFound).json(serviceResponse.data);
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
+    }
+    if (serviceResponse.status === 'UNAUTHORIZED') {
+      return res.status(mapStatusHTTP.invalidPost).json(serviceResponse.data);
     }
 
-    res.status(200).json(serviceResponse.data);
+    return res.status(200).json(serviceResponse.data);
   }
 }
 

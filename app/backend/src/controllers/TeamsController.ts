@@ -11,7 +11,7 @@ class TeamsController {
 
   public async findAll(_req: Request, res: Response) {
     const serviceResponse = await this.teamsService.findAll();
-    res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
   }
 
   public async findById(req: Request, res: Response) {
@@ -23,7 +23,7 @@ class TeamsController {
       return res.status(mapStatusHTTP.notFound).json(serviceResponse.data);
     }
 
-    res.status(200).json(serviceResponse.data);
+    return res.status(200).json(serviceResponse.data);
   }
 }
 

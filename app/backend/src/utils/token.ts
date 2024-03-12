@@ -20,9 +20,7 @@ function generateToken(tokenPayload: TokenPayload): string {
 
 function validateToken(token:string) : string | jwt.JwtPayload {
   const value = jwt.verify(token, secret);
-  if (!value) {
-    return 'invalid token';
-  }
+  console.log('isso');
 
   return value;
 }
