@@ -4,6 +4,7 @@ import userInterface from '../Interfaces/user/Users';
 import UserModel from '../models/UsersModel';
 import { IUserModel } from '../Interfaces/user/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
+import { message } from '../utils/mapStatusHttp';
 
 // import { ServiceResponse, ServiceMessage } from '../interfaces/ServiceResponse';
 
@@ -19,12 +20,12 @@ export default class UserServices {
 
   public async login(email:string, password:string): Promise<ServiceResponse<{ token:string }>> {
     const dataValue = await this.userModel.login(email);
-    if (!dataValue) return { status: 'NOT_FOUND', data: { message: 'invalid password or email' } };
-    // console.log(!bcrypt.compareSync(dataValue.password, password));
-    console.log(dataValue);
+    if (!dataValue) {
+      return { status: 'NOT_FOUND', data: { message: message.invalidEmailOrPassword } };
+    }
 
     if (!bcrypt.compareSync(password, dataValue.password)) {
-      return { status: 'UNAUTHORIZED', data: { message: 'invalid password' } };
+      return { status: 'UNAUTHORIZED', data: { message: message.invalidEmailOrPassword } };
     }
     const token = generateToken({ email });
     return { status: 'SUCCESSFUL', data: { token } };

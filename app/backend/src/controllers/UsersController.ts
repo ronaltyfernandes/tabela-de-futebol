@@ -20,7 +20,7 @@ class UsersController {
     const serviceResponse = await this.userService.login(email, password);
 
     if (serviceResponse.status === 'NOT_FOUND') {
-      return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
+      return res.status(mapStatusHTTP.invalidPost).json(serviceResponse.data);
     }
     if (serviceResponse.status === 'UNAUTHORIZED') {
       return res.status(mapStatusHTTP.invalidPost).json(serviceResponse.data);

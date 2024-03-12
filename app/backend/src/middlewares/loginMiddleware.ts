@@ -31,7 +31,7 @@ const tokenValid = (req: Request, res: Response, next: NextFunction) => {
     validateToken(tokenResult);
     return next();
   } catch (error) {
-    res.status(mapStatusHTTP.invalidPost).json({ message: message.invalidToken });
+    return res.status(mapStatusHTTP.invalidPost).json({ message: message.invalidToken });
   }
 };
 export { newEmailValid, newPasswordValid, tokenValid };
