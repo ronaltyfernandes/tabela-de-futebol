@@ -40,17 +40,19 @@ class TeamsController {
     return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
   }
 
-  // public async createMatch(req: Request, res: Response) {
-  //   const { id } = req.params;
-  //   const { awayTeamGoals, homeTeamGoals, homeTeamId, awayTeamId } = req.body;
-  //   const serviceResponse = await this.teamsService.createMatch(
-  //     { awayTeamGoals, homeTeamGoals, id: parseFloat(id), awayTeamId, homeTeamId },
-  //   );
-  //   if (serviceResponse.status === 'NOT_FOUND') {
-  //     return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
-  //   }
-  //   return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
-  // }
+  public async createMatch(req: Request, res: Response) {
+    const { awayTeamGoals, homeTeamGoals, homeTeamId, awayTeamId } = req.body;
+    const serviceResponse = await this.teamsService.createMatch(
+      { awayTeamGoals, homeTeamGoals, awayTeamId, homeTeamId },
+    );
+    if (serviceResponse.status === 'CONFLICT') {
+      return res.status(mapStatusHTTP.conflict).json(serviceResponse.data);
+    }
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(mapStatusHTTP.notFound).json(serviceResponse.data);
+    }
+    return res.status(mapStatusHTTP.postOk).json(serviceResponse.data);
+  }
 }
 
 export default TeamsController;

@@ -1,5 +1,5 @@
 import matchesInterface from '../Interfaces/matches/Matches';
-import MatchesModel from '../models/Matches';
+import MatchesModel from '../models/MatchesModel';
 import { IMatches } from '../Interfaces/matches/IMatches';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { message } from '../utils/mapStatusHttp';
@@ -41,11 +41,13 @@ export default class MatchesServices {
 
   public async createMatch(payload: createMatch):
   Promise<ServiceResponse<{ message:string }>> {
-    const allmaches = await this.matchesModel.createMatch(payload);
-    console.log(allmaches);
-    if (!allmaches['0'] || allmaches['0'] === 0) {
-      return { status: 'NOT_FOUND', data: { message: message.notFond } };
+    if (payload.awayTeamId === payload.homeTeamId) {
+      return { status: 'CONFLICT', data: { message: message.duplicate } };
     }
-    return { status: 'SUCCESSFUL', data: { message: message.ok } };
+    const allmaches = await this.matchesModel.createMatch(payload);
+    if (!allmaches || allmaches === undefined) {
+      return { status: 'NOT_FOUND', data: { message: message.invalidTeamId } };
+    }
+    return { status: 'SUCCESSFUL', data: allmaches };
   }
 }

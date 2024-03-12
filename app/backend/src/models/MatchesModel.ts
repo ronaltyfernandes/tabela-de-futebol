@@ -57,13 +57,15 @@ export default class matchesModel implements IMatches {
     return dbData;
   }
 
-  async createMatch(payload: createMatch): Promise<Matches | null> {
+  async createMatch(payload: createMatch): Promise<matchesType | undefined> {
     const { homeTeamGoals, awayTeamGoals, awayTeamId, homeTeamId } = payload;
-    const duplicateMatch = await this.model.findOne({ where: { awayTeamId, homeTeamId } });
-    if (duplicateMatch !== undefined) return null;
-    const dbData = await this.model.create(
-      { homeTeamGoals, awayTeamGoals, awayTeamId, homeTeamId, inProgress: true },
-    );
-    return dbData;
+    try {
+      const dbData = await this.model.create(
+        { homeTeamGoals, awayTeamGoals, awayTeamId, homeTeamId, inProgress: true },
+      );
+      return dbData.dataValues;
+    } catch (error) {
+      return undefined;
+    }
   }
 }
