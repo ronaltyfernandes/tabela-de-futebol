@@ -30,30 +30,16 @@ describe('Testando a rota teams', () => {
     expect(httpReponse.body).to.deep.equal(allTeamsMock);
 
   });
-  /**
-   * Exemplo do uso de stubs com tipos
-   */
 
-  // let chaiHttpResponse: Response;
+  it('testando retorno do findById para a lista de produtos', async () => {
 
-  // before(async () => {
-  //   sinon
-  //     .stub(Example, "findOne")
-  //     .resolves({
-  //       ...<Seu mock>
-  //     } as Example);
-  // });
+    sinon.stub(Teams, 'findByPk').resolves(allTeamsMock[1] as any);
+    
+    const httpReponse = await chai.request(app).get('/teams/1').send(allTeamsMock);    
 
-  // after(()=>{
-  //   (Example.findOne as sinon.SinonStub).restore();
-  // })
+    expect(httpReponse.status).to.equal(mapStatusHTTP.successful);
+    expect(httpReponse.body).to.deep.equal(allTeamsMock[1]);
 
-  // it('...', async () => {
-  //   chaiHttpResponse = await chai
-  //      .request(app)
-  //      ...
-
-  //   expect(...)
-  // });
-
+  });
+ 
 });
