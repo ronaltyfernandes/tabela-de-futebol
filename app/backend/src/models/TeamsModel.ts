@@ -9,9 +9,7 @@ export default class TeamsModel implements ITeamsModel {
   private model = Teams;
 
   async findAll(): Promise<ITeams[]> {
-    console.log('erro');
     const dbData = await this.model.findAll();
-
     return dbData;
   }
 

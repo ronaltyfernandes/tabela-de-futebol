@@ -7,7 +7,7 @@ const mapStatusHTTP = {
 
 const message = {
   invalidFields: 'Invalid fields',
-  requiredFields: 'Some required fields are missing',
+  requiredFields: 'All fields must be filled',
   duplicateUser: 'User already registered',
   invalidDisplayValue: '"displayName" length must be at least 8 characters long',
   invalidEmail: '"email" must be a valid email',

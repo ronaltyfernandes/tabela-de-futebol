@@ -1,9 +1,10 @@
 // import { NewEntity } from '..';
+import userType from './Users';
 
 export interface IUserModel {
   // create(data: Partial<IBook>): Promise<IBook>,
-  // findAll(): Promise<teams[]>,
-  login(password:string, email:string): Promise<{ token: string } | null>
+  findAll(): Promise<userType[]>,
+  login(email:string): Promise<userType | null>
   // update(id: IBook['id'], data: Partial<NewEntity<IBook>>): Promise<IBook | null>,
   // delete(id: IBook['id']): Promise<number>,
 }
