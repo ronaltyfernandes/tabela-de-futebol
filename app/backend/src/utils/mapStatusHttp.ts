@@ -7,16 +7,15 @@ const mapStatusHTTP = {
 };
 
 const message = {
+  finished: 'Finished',
+  ok: 'ok',
   invalidFields: 'Invalid fields',
   requiredFields: 'All fields must be filled',
-  duplicateUser: 'User already registered',
-  invalidDisplayValue: '"displayName" length must be at least 8 characters long',
   invalidEmailOrPassword: 'Invalid email or password',
   invalidPassword: '"password" length must be at least 6 characters long',
   invalidToken: 'Token must be a valid token',
   requiredToken: 'Token not found',
   requiredName: '"name" is required',
-  userDontExist: 'User does not exist',
   notFond: 'notFond',
 
 };

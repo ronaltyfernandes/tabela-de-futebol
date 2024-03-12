@@ -21,8 +21,9 @@ export default class UserServices {
     const dataValue = await this.userModel.login(email);
     if (!dataValue) return { status: 'NOT_FOUND', data: { message: 'invalid password or email' } };
     // console.log(!bcrypt.compareSync(dataValue.password, password));
+    console.log(dataValue);
 
-    if (!bcrypt.compareSync(dataValue.password, password)) {
+    if (!bcrypt.compareSync(password, dataValue.password)) {
       return { status: 'UNAUTHORIZED', data: { message: 'invalid password' } };
     }
     const token = generateToken({ email });

@@ -15,10 +15,42 @@ class TeamsController {
       const serviceResponse = await this.teamsService.findAll();
       return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
     }
-    const convertToBollean = !!inProgress('true');
-    const serviceResponse = await this.teamsService.findByProgress(convertToBollean);
-    return serviceResponse;
+    const serviceResponse = await this.teamsService.findByProgress(inProgress === 'true');
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
   }
+
+  public async finishMatch(req: Request, res: Response) {
+    const { id } = req.params;
+    const serviceResponse = await this.teamsService.finishMatch(parseFloat(id));
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
+    }
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+  }
+
+  public async updateGoals(req: Request, res: Response) {
+    const { id } = req.params;
+    const { awayTeamGoals, homeTeamGoals } = req.body;
+    const serviceResponse = await this.teamsService.updateGoals(
+      { awayTeamGoals, homeTeamGoals, id: parseFloat(id) },
+    );
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
+    }
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+  }
+
+  // public async createMatch(req: Request, res: Response) {
+  //   const { id } = req.params;
+  //   const { awayTeamGoals, homeTeamGoals, homeTeamId, awayTeamId } = req.body;
+  //   const serviceResponse = await this.teamsService.createMatch(
+  //     { awayTeamGoals, homeTeamGoals, id: parseFloat(id), awayTeamId, homeTeamId },
+  //   );
+  //   if (serviceResponse.status === 'NOT_FOUND') {
+  //     return res.status(mapStatusHTTP.invalidData).json(serviceResponse.data);
+  //   }
+  //   return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+  // }
 }
 
 export default TeamsController;
