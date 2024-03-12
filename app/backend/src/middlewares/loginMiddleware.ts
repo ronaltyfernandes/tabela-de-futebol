@@ -23,12 +23,15 @@ const newPasswordValid = (req: Request, res: Response, next: NextFunction) => {
 
 const tokenValid = (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
+
   if (!authorization) {
     return res.status(mapStatusHTTP.invalidPost).json({ message: message.requiredToken });
   }
   const tokenResult = authorization.split(' ')[1];
+
   try {
-    validateToken(tokenResult);
+    const resultTokenValue = validateToken(tokenResult);
+    res.locals.userData = resultTokenValue;
     return next();
   } catch (error) {
     return res.status(mapStatusHTTP.invalidPost).json({ message: message.invalidToken });

@@ -17,4 +17,10 @@ export default class UserModel implements IUserModel {
     if (fundUser == null) return null;
     return fundUser.dataValues;
   }
+
+  async validateToken(email:string): Promise< { role: string } | null> {
+    const fundUser = await this.model.findOne({ where: { email } });
+    if (fundUser == null) return null;
+    return { role: fundUser.dataValues.role };
+  }
 }

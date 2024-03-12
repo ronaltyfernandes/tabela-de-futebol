@@ -2,7 +2,7 @@
 
 import { Request, Response } from 'express';
 import UserServices from '../services/UserServices';
-import { mapStatusHTTP } from '../utils/mapStatusHttp';
+import { mapStatusHTTP, message } from '../utils/mapStatusHttp';
 
 class UsersController {
   constructor(
@@ -26,6 +26,20 @@ class UsersController {
       return res.status(mapStatusHTTP.invalidPost).json(serviceResponse.data);
     }
 
+    return res.status(200).json(serviceResponse.data);
+  }
+
+  public async validateToken(_req: Request, res: Response) {
+    const { email } = res.locals.userData;
+
+    if (!email) {
+      return res.status(mapStatusHTTP.invalidPost).json({ message: message.requiredToken });
+    }
+    const serviceResponse = await this.userService.validateToken(email);
+
+    if (serviceResponse.status === 'NOT_FOUND') {
+      return res.status(mapStatusHTTP.invalidPost).json(serviceResponse.data);
+    }
     return res.status(200).json(serviceResponse.data);
   }
 }

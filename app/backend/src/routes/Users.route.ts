@@ -13,6 +13,10 @@ router.post(
   (req: Request, res: Response) => userController.login(req, res),
 );
 router.get('/', (req: Request, res: Response) => userController.findAll(req, res));
-router.get('/role', tokenValid, (req: Request, res: Response) => userController.findAll(req, res));
+router.get(
+  '/role',
+  tokenValid,
+  (req: Request, res: Response) => userController.validateToken(req, res),
+);
 
 export default router;

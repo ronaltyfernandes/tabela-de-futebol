@@ -30,4 +30,16 @@ export default class UserServices {
     const token = generateToken({ email });
     return { status: 'SUCCESSFUL', data: { token } };
   }
+
+  public async validateToken(email: string): Promise<ServiceResponse<{ role:string }>> {
+    if (typeof email !== 'string') {
+      return { status: 'NOT_FOUND', data: { message: message.invalidToken } };
+    }
+
+    const dataValue = await this.userModel.validateToken(email);
+    if (!dataValue) {
+      return { status: 'NOT_FOUND', data: { message: message.invalidToken } };
+    }
+    return { status: 'SUCCESSFUL', data: { role: dataValue.role } };
+  }
 }
