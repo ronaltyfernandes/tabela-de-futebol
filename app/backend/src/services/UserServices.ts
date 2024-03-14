@@ -1,6 +1,5 @@
 import * as bcrypt from 'bcryptjs';
 import { generateToken } from '../utils/token';
-import userInterface from '../Interfaces/user/Users';
 import UserModel from '../models/UsersModel';
 import { IUserModel } from '../Interfaces/user/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
@@ -12,11 +11,6 @@ export default class UserServices {
   constructor(
     private userModel: IUserModel = new UserModel(),
   ) { }
-
-  public async findAll(): Promise<ServiceResponse<userInterface[]>> {
-    const allTeams = await this.userModel.findAll();
-    return { status: 'SUCCESSFUL', data: allTeams };
-  }
 
   public async login(email:string, password:string): Promise<ServiceResponse<{ token:string }>> {
     const dataValue = await this.userModel.login(email);

@@ -8,7 +8,9 @@ import Example from '../database/models/ExampleModel';
 import Users from '../database/models/UsersModel';
 import { mapStatusHTTP, message } from '../utils/mapStatusHttp'
 
-import { mockUsersAll, mockOneUser } from './mocks/mockUsers'
+import { mockOneUser } from './mocks/mockUsers'
+import { token } from './mocks/mockLogin'
+
 import { loginSucess } from './mocks/mockLogin'
 
 
@@ -21,40 +23,43 @@ const { expect } = chai;
 describe('Testando a rota /login', () => {
   beforeEach(function () { sinon.restore(); });
 
-  it('testando retorno da rota com o metodo get para a lista de users', async () => {
-    sinon.stub(Users, 'findAll').resolves(mockUsersAll as any);
+  it('testando retorno da rota com o metodo post para login', async () => {
+    const dataFindOne = Users.build(mockOneUser)
+    sinon.stub(Users, 'findOne').resolves(dataFindOne as any);
     
-    const httpReponse = await chai.request(app).get('/login');    
+    const httpReponse = await chai.request(app)
+    .post('/login')
+    .send(loginSucess);
     
     expect(httpReponse.status).to.equal(mapStatusHTTP.successful);
-    expect(httpReponse.body).to.deep.equal(mockUsersAll);
+    expect(httpReponse.body.token.split('.')[0]).to.be.equal(token.split('.')[0]);
 
   });
 
-  // it.only('testando retorno da rota com o metodo post para a lista de users', async () => {
-  //   sinon.stub(Users, 'findOne').resolves(mockOneUser as any);
+  it('testando ERRO de retorno da rota com o metodo post para login', async () => {
+    const dataFindOne = Users.build(mockOneUser)
+    sinon.stub(Users, 'findOne').resolves(dataFindOne as any);
     
-  //   const httpReponse = await chai.request(app)
-  //   .post('/login')
-  //   .send(loginSucess);
-  //   console.log(httpReponse.text);
+    const httpReponse = await chai.request(app)
+    .post('/login')
+    .send(loginSucess);
     
-  //   // expect(httpReponse.status).to.equal(mapStatusHTTP.successful);
-  //   expect(httpReponse.body).to.deep.equal(mockOneUser);
+    expect(httpReponse.status).to.equal(mapStatusHTTP.notFound);
+    expect(httpReponse.body.token.split('.')[0]).to.be.not.equal(token.split('.')[1]);
 
-  // });
+  });
 
-  // it.only('testando retorno da rota /role com metodo get para a lista de users', async () => {
-  //   const returnValue = {role: mockUsersAll[1].role}
-  //   sinon.stub(Users, 'findOne').resolves(mockUsersAll[1] as any);
+  it('testando retorno da rota /role com metodo get para a lista de users', async () => {
+    const dataFindOne = Users.build(mockOneUser)
+    const returnValue = {role: dataFindOne.role}
+    sinon.stub(Users, 'findOne').resolves(dataFindOne as any);
     
-  //   const httpReponse = await chai.request(app).get('/login/role')
-  //   .set('authorization','token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxMDM0NDQ4Mn0.TImLkyRK2SZ5bAFNsCoBxqFzJZqKMAou9ARCLBfonyk')
-  //   .send(returnValue);    
+    const httpReponse = await chai.request(app).get('/login/role')
+    .set('authorization', `baerer ${token}`)
+    .send(returnValue);    
 
-  //   expect(httpReponse.status).to.equal(mapStatusHTTP.successful);
-  //   expect(httpReponse.header).to.deep.equal('isso');
-
-  // });
+    expect(httpReponse.status).to.equal(mapStatusHTTP.successful);
+    expect(httpReponse.body.role).to.be.equal(mockOneUser.role);
+  });
  
 });

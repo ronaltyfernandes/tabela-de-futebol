@@ -7,6 +7,16 @@ class leaderBoardController {
     private leaderBServices = new LeaderBServices(),
   ) { }
 
+  public async findAllHome(_req: Request, res: Response) {
+    const serviceResponse = await this.leaderBServices.findAllHome();
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+  }
+
+  public async findAllAway(_req: Request, res: Response) {
+    const serviceResponse = await this.leaderBServices.findAllAway();
+    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
+  }
+
   public async findAll(_req: Request, res: Response) {
     const serviceResponse = await this.leaderBServices.findAll();
     return res.status(mapStatusHTTP.successful).json(serviceResponse.data);

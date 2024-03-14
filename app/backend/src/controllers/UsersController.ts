@@ -9,11 +9,6 @@ class UsersController {
     private userService = new UserServices(),
   ) { }
 
-  public async findAll(_req: Request, res: Response) {
-    const serviceResponse = await this.userService.findAll();
-    return res.status(mapStatusHTTP.successful).json(serviceResponse.data);
-  }
-
   public async login(req: Request, res: Response) {
     const { email, password } = req.body;
 
@@ -31,7 +26,6 @@ class UsersController {
 
   public async validateToken(_req: Request, res: Response) {
     const { email } = res.locals.userData;
-
     if (!email) {
       return res.status(mapStatusHTTP.invalidPost).json({ message: message.requiredToken });
     }

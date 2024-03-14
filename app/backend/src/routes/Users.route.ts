@@ -12,7 +12,6 @@ router.post(
   newPasswordValid,
   (req: Request, res: Response) => userController.login(req, res),
 );
-router.get('/', (req: Request, res: Response) => userController.findAll(req, res));
 router.get(
   '/role',
   tokenValid,
