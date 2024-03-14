@@ -23,4 +23,4 @@ const loginErroPasswordNotExist= {
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTcxMDQzODk0Nn0.S7aBrInCu6YNtxBJeXxWKwE9duNkOd87L0ymjLQ22oo"
 
-export { loginSucess, token }
+export { loginSucess, token, loginErroEmailErroFormat, loginErroEmailNotExist, loginErroPasswordInvalid, loginErroPasswordNotExist }

@@ -54,6 +54,7 @@ export default class matchesModel implements IMatches {
   async updateGoals(payload: payloadUpdateGoals): Promise<number[]> {
     const { id, homeTeamGoals, awayTeamGoals } = payload;
     const dbData = await this.model.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+
     return dbData;
   }
 
@@ -63,6 +64,7 @@ export default class matchesModel implements IMatches {
       const dbData = await this.model.create(
         { homeTeamGoals, awayTeamGoals, awayTeamId, homeTeamId, inProgress: true },
       );
+
       return dbData.dataValues;
     } catch (error) {
       return undefined;
