@@ -8,13 +8,14 @@ export default class UserModel implements IUserModel {
   private model = User;
 
   async findAll(): Promise<userType[]> {
-    const dbData = await this.model.findAll();
+    const dbData = await this.model.findAll({ attributes: { exclude: ['password'] } });
     return dbData;
   }
 
   async login(email:string): Promise< userType | null> {
     const fundUser = await this.model.findOne({ where: { email } });
-    if (fundUser == null) return null;
+    if (fundUser === null) return null;
+    console.log(fundUser);
     return fundUser.dataValues;
   }
 
