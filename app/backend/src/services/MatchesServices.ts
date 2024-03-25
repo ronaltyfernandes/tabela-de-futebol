@@ -5,8 +5,6 @@ import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { message } from '../utils/mapStatusHttp';
 import { payloadUpdateGoals, createMatch } from '../Interfaces/matches/types';
 
-// import { ServiceResponse, ServiceMessage } from '../interfaces/ServiceResponse';
-
 export default class MatchesServices {
   constructor(
     private matchesModel: IMatches = new MatchesModel(),

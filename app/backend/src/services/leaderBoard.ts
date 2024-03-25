@@ -1,12 +1,7 @@
-// src/services/BookService.ts
-
 import { lboardType } from '../Interfaces/leaderBoardes/TypeLBord';
 import LeaderboardsModel from '../models/LeaderboardsModel';
-// import { IBook } from '../interfaces/books/IBook';
 import { ILeaderBoardModel } from '../Interfaces/leaderBoardes/ILeaderBoard';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
-
-// import { ServiceResponse, ServiceMessage } from '../interfaces/ServiceResponse';
 
 export default class TeamsServices {
   constructor(

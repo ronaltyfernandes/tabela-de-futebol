@@ -6,9 +6,6 @@ import { lboardType } from '../Interfaces/leaderBoardes/TypeLBord';
 import matchesType from '../Interfaces/matches/Matches';
 import teamsType from '../Interfaces/teams/Teams';
 
-// import ITeams from '../Interfaces/teams/Teams';
-// import { NewEntity } from '../interfaces';
-
 function calcularPontos(team:teamsType, match:matchesType, valores:lboardType, HomeGame: boolean):
 lboardType | undefined {
   const novosValores = { ...valores };

@@ -5,8 +5,6 @@ import { IUserModel } from '../Interfaces/user/IUserModel';
 import { ServiceResponse } from '../Interfaces/ServiceResponse';
 import { message } from '../utils/mapStatusHttp';
 
-// import { ServiceResponse, ServiceMessage } from '../interfaces/ServiceResponse';
-
 export default class UserServices {
   constructor(
     private userModel: IUserModel = new UserModel(),
