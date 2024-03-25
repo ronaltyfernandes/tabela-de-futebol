@@ -1,4 +1,12 @@
-Um back-end desevolvido com um CRUD funcional e completo utilizando a biblioteca do sequilize, fazendo requisições para duas tabelas diferentes em um banco de dados.
-Aqui podemos adicionar partidas, modificar partidas existentes, ver os valores de cada time(como pontos, gols, classificação, etc), ver as tabelas das equipes, fazer login( com os valores devidamente encripitados usando jwt web token), usar tokens para salvar nossos dados de login, entre outras varias funcionalidades, tudo isso com testes de integração garantindo a funcionalidade do codigo com mais de 80% de cobertura.
+Um back-end foi desenvolvido com um CRUD funcional e completo, utilizando a biblioteca Sequelize para fazer requisições a duas tabelas diferentes em um banco de dados. Nesse sistema, é possível:
 
-Esse foi um arquivo desenvolvido para o modulo de back-end durante meu curso da Trybe, dito isso é importante resaltar que apenas os arquivos desenvolvidos dentro do back-end/src e os arquivos dockerfile foram desenvidos por mim, sendo o restante, incluindo o front-end, de direito da Trybe.
+-Adicionar partidas.
+-Modificar partidas existentes.
+-Visualizar os valores de cada time (como pontos, gols, classificação, etc.).
+-Ver as tabelas das equipes, devidamente ordenadas assim com na tabela do brasileirão.
+-Ver as tabelas das equipes filtrando os valores dos times para jogos em casa e fora de casa.
+-Realizar login (com os valores devidamente criptografados usando JWT Web Token).
+-Utilizar tokens para salvar os dados de login.
+Além disso, o código possui testes de integração que garantem sua funcionalidade, com uma cobertura de mais de 80%.
+
+Esse arquivo foi desenvolvido durante o módulo de back-end do meu curso na Trybe. É importante ressaltar que apenas os arquivos desenvolvidos dentro do diretório back-end/src e os arquivos Dockerfile foram criados por mim. O restante, incluindo o front-end, é de propriedade da Trybe.
