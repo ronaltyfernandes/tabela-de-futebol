@@ -1,10 +1,4 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+Um back-end desevolvido com um CRUD funcional e completo utilizando a biblioteca do sequilize, fazendo requisições para duas tabelas diferentes em um banco de dados.
+Aqui podemos adicionar partidas, modificar partidas existentes, ver os valores de cada time(como pontos, gols, classificação, etc), ver as tabelas das equipes, fazer login( com os valores devidamente encripitados usando jwt web token), usar tokens para salvar nossos dados de login, entre outras varias funcionalidades, tudo isso com testes de integração garantindo a funcionalidade do codigo com mais de 80% de cobertura.
+
+Esse foi um arquivo desenvolvido para o modulo de back-end durante meu curso da Trybe, dito isso é importante resaltar que apenas os arquivos desenvolvidos dentro do back-end/src e os arquivos dockerfile foram desenvidos por mim, sendo o restante, incluindo o front-end, de direito da Trybe.
